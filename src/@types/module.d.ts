@@ -1,5 +1,4 @@
-declare module "menu/MenuComponent";
-declare module "menu/HelloWorld" {
-  const HelloWorld: React.ComponentType;
-  export default HelloWorld;
-}
+declare module "menu/MenuComponent" {
+  const MenuComponent: React.ComponentType;
+  export default MenuComponent;
+};

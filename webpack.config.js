@@ -1,17 +1,39 @@
 const path = require("path");
+const dotenv = require("dotenv");
+const { ModuleFederationPlugin } = require("webpack").container;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { EsbuildPlugin } = require("esbuild-loader");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+dotenv.config();
 
 module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    publicPath: "/",
+    filename: '[name].[contenthash].js',
+    publicPath: "http://localhost:3000/",
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.json', '.css', '.scss'],
+    alias: {
+      images: path.resolve(__dirname, 'public/images'),
+      react: path.resolve('./node_modules/react')
+    }
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: false,
+          },
+        },
+      }),
+    ],
   },
   module: {
     rules: [
@@ -21,22 +43,41 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new ModuleFederationPlugin({
+      name: "main",
+      filename: 'remoteEntry.js',
+      remotes: {
+        menu: `menu@${process.env.REACT_APP_MENU_URL}/remoteEntry.js`,
+      },
+      shared: {
+        react: { singleton: true, eager: true, requiredVersion: "^19.0.0" },
+        "react-dom": { singleton: true, eager: true, requiredVersion: "^19.0.0" },
+      },
+      exposes: {
+        "./App": "./src/App",
+      },
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+      title: "Restaurant Demo App",
     }),
   ],
   devServer: {
     static: path.join(__dirname, "dist"),
     historyApiFallback: true,
     port: 3000,
-    open: true,
     hot: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+    },
   },
 };
