@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .custom-layout-section {
+    @apply w-screen h-screen flex relative;
+  }
+
+  .custom-layout-child {
+    @apply relative w-full bg-gradient-to-bl from-milky-coffee to-creamy-sand;
+    margin-left: -1vw;
+    z-index: -1;
+  }
+}

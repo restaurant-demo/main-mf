@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .flip-x {
+    transform: scaleX(-1);
+  }
+}
+
+@layer components {
+  .custom-sidebar {
+    @apply relative top-0 left-0 mr-1vw bg-gradient-to-b from-mocha via-caramel-gold to-cream text-vanilla-white transform transition-all duration-300 ease-in-out;
+  }
+
+  .custom-logo-container {
+    @apply p-5 text-lg font-bold;
+  }
+
+  .custom-ul {
+    @apply space-y-4 p-5;
+  }
+
+  .custom-list-element {
+    @apply hover:bg-gray-700 p-2 rounded cursor-pointer;
+  }
+
+  .custom-toggle-button {
+    @apply absolute w-2vw h-2vw top-1/2 z-50 transform transition-all duration-300 ease-in-out;
+  }
+
+  .custom-button-icon {
+    @apply relative w-full h-full bg-caramel-gold border border-mocha rounded-lg transform transition-all duration-300 ease-in-out;
+  }
+}
