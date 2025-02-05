@@ -1,11 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
+import Layout from "./components/Layout";
 
-const App = () => {
-  return (
-    <div className="h-screen flex justify-center items-center bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-500">Hello Micro Frontend!</h1>
-    </div>
-  );
-};
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Layout />
+  </Suspense>
+);
 
 export default App;
