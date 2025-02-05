@@ -17,9 +17,9 @@ module.exports = {
     publicPath: "http://localhost:3000/",
   },
   resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json', '.css', '.scss'],
     alias: {
-      images: path.resolve(__dirname, 'public/images'),
       react: path.resolve('./node_modules/react')
     }
   },
@@ -37,6 +37,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.svg$/,
+        use: "file-loader",
+      },
       {
         test: /\.(ts|tsx)$/,
         use: "babel-loader",
@@ -73,7 +77,7 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     historyApiFallback: true,
     port: 3000,
-    hot: true,
+    hot: false,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
