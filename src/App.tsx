@@ -1,10 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import Layout from "./components/Layout";
 
 const App = () => (
-  <Suspense fallback={<div>Loading...</div>}>
-    <Layout />
-  </Suspense>
+  <Layout />
 );
 
 export default App;
