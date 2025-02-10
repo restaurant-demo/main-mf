@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import Sidebar from '../Sidebar';
 import './Layout.css';
+import { useModalStore } from 'stores/modalStore';
 
-const MenuComponent = React.lazy(() => import('menu/MenuComponent'));
+const MenuApp = React.lazy(() => import('menu/MenuApp'));
+const Modal = React.lazy(() => import('modal_lib/Modal'));
 
 const Layout = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isModalOpen } = useModalStore((state: any) => state);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <>
+      {isModalOpen && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Modal />
+        </Suspense>
+      )}
       <section className="custom-layout-section">
-        <Sidebar isOpen={isOpen} toggleSidebar={() => setIsOpen(!isOpen)} />
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
         <div className="custom-layout-child">
-          <div className="h-screen pt-4 pb-4 pl-8 pr-8">
-            <MenuComponent />
+          <div className="custom-component-container">
+            <div className="custom-section-title">
+              <div className="custom-title-background">Menu</div>
+            </div>
+            <div className="custom-horizontal-linear"></div>
+            <div className="custom-component-section">
+              <div className="custom-component-background">
+                <Suspense fallback={<div>Loading...</div>}>
+                  <MenuApp />
+                </Suspense>
+              </div>
+            </div>
           </div>
         </div>
       </section>
