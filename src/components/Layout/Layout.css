@@ -8,8 +8,31 @@
   }
 
   .custom-layout-child {
-    @apply relative w-full bg-gradient-to-bl from-milky-coffee to-creamy-sand;
+    @apply relative w-full bg-gradient-to-bl from-milky-coffee to-creamy-sand transform transition-all duration-1000 ease-in-out;
     margin-left: -1vw;
-    z-index: -1;
+  }
+
+  .custom-component-container {
+    @apply flex flex-col gap-1vw h-screen pt-8 pb-8 pl-8 pr-8;
+  }
+
+  .custom-section-title {
+    @apply text-center font-bold text-4vw p-0.5vw bg-gradient-to-br from-mocha via-caramel-gold to-cream;
+  }
+
+  .custom-title-background {
+    @apply text-caramel-gold bg-creamy-sand;
+  }
+
+  .custom-horizontal-linear {
+    @apply w-full pt-0.5vw bg-gradient-to-bl from-mocha via-caramel-gold to-cream;
+  }
+
+  .custom-component-section {
+    @apply w-full h-full p-0.5vw bg-gradient-to-tr from-mocha via-caramel-gold to-cream;
+  }
+
+  .custom-component-background {
+    @apply w-full h-full p-2vw bg-gradient-to-tr from-milky-coffee to-creamy-sand;
   }
 }
