@@ -59,13 +59,15 @@ module.exports = {
       filename: 'remoteEntry.js',
       remotes: {
         menu: `menu@${process.env.REACT_APP_MENU_URL}/remoteEntry.js`,
+        modal_lib: `modal_lib@${process.env.REACT_APP_MODAL_LIB_URL}/remoteEntry.js`,
       },
       shared: {
         react: { singleton: true, eager: true, requiredVersion: "^19.0.0" },
         "react-dom": { singleton: true, eager: true, requiredVersion: "^19.0.0" },
+        zustand: { singleton: true, eager: true, requiredVersion: "^5.0.0" },
       },
       exposes: {
-        "./App": "./src/App",
+        "./modalStore": "./src/stores/modalStore",
       },
     }),
     new HtmlWebpackPlugin({
