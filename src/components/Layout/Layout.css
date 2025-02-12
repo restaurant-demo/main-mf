@@ -4,7 +4,7 @@
 
 @layer components {
   .custom-layout-section {
-    @apply w-screen h-screen flex relative;
+    @apply relative w-full h-screen flex;
   }
 
   .custom-layout-child {
@@ -13,7 +13,7 @@
   }
 
   .custom-component-container {
-    @apply flex flex-col gap-1vw h-screen pt-8 pb-8 pl-8 pr-8;
+    @apply flex flex-col gap-1vw h-full pt-2vw pb-2vw pl-2vw pr-2vw;
   }
 
   .custom-section-title {
@@ -29,10 +29,11 @@
   }
 
   .custom-component-section {
-    @apply w-full h-full p-0.5vw bg-gradient-to-tr from-mocha via-caramel-gold to-cream;
+    @apply w-full p-0.5vw bg-gradient-to-tr from-mocha via-caramel-gold to-cream;
+    height: 82%
   }
 
   .custom-component-background {
-    @apply w-full h-full p-2vw bg-gradient-to-tr from-milky-coffee to-creamy-sand;
+    @apply relative w-full h-full p-2vw bg-gradient-to-tr from-milky-coffee to-creamy-sand overflow-y-auto;
   }
 }
