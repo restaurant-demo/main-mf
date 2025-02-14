@@ -2,35 +2,32 @@ import React, { Suspense, useState } from 'react';
 import Sidebar from '../Sidebar';
 import './Layout.css';
 import { useModalStore } from 'stores/modalStore';
-import { useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 const MenuApp = React.lazy(() => import('menu/MenuApp'));
+const TablesApp = React.lazy(() => import('tables/TablesApp'));
 const Modal = React.lazy(() => import('modal_lib/Modal'));
 
 const titles: Record<string, string> = {
-  "/menu": "Menu",
-  "/tables": "Tables",
-  "/waiters": "Waiters",
-  "/orders": "Orders",
-  "/stats": "Stats",
-  "/settings": "Settings",
+  '/menu': 'Menu',
+  '/tables': 'Tables',
+  '/waiters': 'Waiters',
+  '/orders': 'Orders',
+  '/stats': 'Stats',
+  '/settings': 'Settings'
 };
 
 const Layout = () => {
-  const { isModalOpen } = useModalStore((state: any) => state);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { modal } = useModalStore((state: any) => state);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const location = useLocation();
-    const title = titles[location.pathname] || "Not found";
+  const title = titles[location.pathname] || 'Not found';
 
   return (
     <>
-      {isModalOpen && (
-        <Suspense
-          fallback={
-            <div className="spinner"></div>
-          }
-        >
+      {modal.isOpen && (
+        <Suspense fallback={<div className="spinner"></div>}>
           <Modal />
         </Suspense>
       )}
@@ -44,12 +41,11 @@ const Layout = () => {
             <div className="custom-horizontal-linear"></div>
             <div className="custom-component-section">
               <div className="custom-component-background">
-                <Suspense
-                  fallback={
-                    <div className="spinner"></div>
-                  }
-                >
-                  <MenuApp />
+                <Suspense fallback={<div className="spinner"></div>}>
+                  <Routes>
+                    <Route path="/menu" element={<MenuApp />} />
+                    <Route path="/tables" element={<TablesApp />} />
+                  </Routes>
                 </Suspense>
               </div>
             </div>
