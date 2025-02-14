@@ -59,6 +59,7 @@ module.exports = {
       filename: 'remoteEntry.js',
       remotes: {
         menu: `menu@${process.env.REACT_APP_MENU_URL}/remoteEntry.js`,
+        tables: `tables@${process.env.REACT_APP_TABLES_URL}/remoteEntry.js`,
         modal_lib: `modal_lib@${process.env.REACT_APP_MODAL_LIB_URL}/remoteEntry.js`,
       },
       shared: {
@@ -67,6 +68,7 @@ module.exports = {
         zustand: { singleton: true, eager: true, requiredVersion: "^5.0.0" },
       },
       exposes: {
+        "./modalTypes": "./@types/modalTypes.d.ts",
         "./modalStore": "./src/stores/modalStore",
       },
     }),
@@ -79,7 +81,12 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     historyApiFallback: true,
     port: 3000,
-    hot: false,
+    hot: true,
+    liveReload: true,
+    client: {
+      overlay: true,
+      webSocketURL: "ws://localhost:3000/ws",
+    },
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
