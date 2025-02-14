@@ -1,17 +1,11 @@
 import { create } from 'zustand';
+import { ModalState } from 'main/modalTypes';
 
-interface ModalState {
-  isModalOpen: boolean;
-
-  setIsModalOpen: (data: boolean) => void;
-}
-
-export const useModalStore = create<ModalState>((set, get) => ({
-  isModalOpen: false,
-
-  setIsModalOpen: (data) => {
-    if (get().isModalOpen !== data) {
-      set({ isModalOpen: data });
-    }
+export const useModalStore = create<ModalState>((set) => ({
+  modal: {
+    isOpen: false,
+    type: null
   },
+
+  setModal: (isOpen, type) => set({ modal: { isOpen, type } }),
 }));
