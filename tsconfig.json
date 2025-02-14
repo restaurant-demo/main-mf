@@ -7,9 +7,10 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "main/modalTypes": ["@types/modalTypes.d.ts"]
+      "main/modalTypes": ["@types/modalTypes.d.ts"],
+      "stores/modalStore": ["src/stores/modalStore.ts"]
     }
   },
   "include": ["src/**/*", "@types"],
