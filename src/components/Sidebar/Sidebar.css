@@ -11,30 +11,68 @@
 @layer components {
   .custom-sidebar {
     @apply relative top-0 left-0 mr-1vw bg-gradient-to-b from-mocha via-caramel-gold to-cream text-vanilla-white transform transition-all duration-1000 ease-in-out z-10;
-    padding: 1.94vw 2.43vw;
+    padding: 1.94vw 0 1.94vw 1.4vw;
   }
 
   .custom-sidebar-open {
     width: 18.3vw;
+    padding-right: 2.43vw;
+  }
+
+  .custom-sidebar-close {
+    @apply w-5vw;
+    padding-right: 0.6vw;
   }
 
   .custom-logo-container {
-    @apply text-center font-bold mb-2.5vw;
+    @apply text-center font-bold opacity-0 mb-2.5vw;
     font-size: 1.81vw;
+    transition: opacity 0.7s ease-in-out;
   }
 
   .custom-ul {
     @apply relative flex flex-col;
-    gap: 1.67vw;
+    gap: 0.5vw;
+  }
+
+  .custom-router-link {
+    display: block;
+    text-decoration: none;
+    transition: padding 1s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .custom-active-link {
+    background: #ffffff33;
+    backdrop-filter: blur(0.52vw);
+    border-radius: 0.28vw;
+  }
+
+  .custom-inactive-link {
+    transform: translateX(0);
+  }
+
+  .custom-translateX-open {
+    transform: translateX(0.7vw);
+  }
+
+  .custom-translateX-close {
+    transform: translateX(-0.4vw) !important;
+    transition: none !important;
+    padding-left: 0.8vw !important;
   }
 
   .custom-list-element {
-    @apply relative flex flex-row gap-1vw hover:bg-gray-700 rounded cursor-pointer;
+    @apply relative flex flex-row gap-1vw rounded cursor-pointer z-10;
     font-size: 1.11vw;
   }
 
-  .custom-list-element {
+  .custom-list-icon {
     @apply relative w-1.5vw h-1.5vw;
+  }
+
+  .custom-navlink-text {
+    @apply opacity-0;
+    transition: opacity 0.5s ease-in-out;
   }
 
   .custom-toggle-button {
