@@ -1,8 +1,9 @@
 export enum EModalType {
   MENU = 'menu',
-  TABLES = 'tables',
-  WAITERS = 'waiters',
-  ORDERS = 'orders',
+  TABLE = 'table',
+  CABINET = 'cabinet',
+  WAITER = 'waiter',
+  ORDER = 'order',
 }
 
 declare module "main/modalTypes" {

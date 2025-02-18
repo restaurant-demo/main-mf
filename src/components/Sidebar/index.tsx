@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: any) => {
                 src={tablesIcon}
                 alt="tables"
               />
-              <span className={`custom-navlink-text ${isOpen ? 'opacity-100' : 'opacity-0'}`}>Tables</span>
+              <span className={`custom-navlink-text ${isOpen ? 'opacity-100' : 'opacity-0'}`}>Tables & VIP</span>
             </li>
           </NavLink>
           <NavLink to="/waiters" className={linkClass} style={linkStyle}>

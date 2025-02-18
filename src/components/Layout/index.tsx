@@ -10,7 +10,7 @@ const Modal = React.lazy(() => import('modal_lib/Modal'));
 
 const titles: Record<string, string> = {
   '/menu': 'Menu',
-  '/tables': 'Tables',
+  '/tables': 'Tables & VIP',
   '/waiters': 'Waiters',
   '/orders': 'Orders',
   '/stats': 'Stats',

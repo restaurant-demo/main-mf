@@ -71,7 +71,7 @@
   }
 
   .custom-navlink-text {
-    @apply opacity-0;
+    @apply opacity-0 whitespace-nowrap;
     transition: opacity 0.5s ease-in-out;
   }
 
